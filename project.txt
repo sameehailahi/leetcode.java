@@ -1,0 +1,82 @@
+import java.util.Scanner;
+
+public class LibraryManagement {
+
+    static String[] bookName = new String[100];
+    static String[] author = new String[100];
+    static boolean[] issued = new boolean[100];
+    static int count = 0;
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Add books
+        System.out.print("Enter number of books to add: ");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 0; i < n; i++) {
+
+            System.out.print("Enter Book Name: ");
+            bookName[count] = sc.nextLine();
+
+            System.out.print("Enter Author Name: ");
+            author[count] = sc.nextLine();
+
+            issued[count] = false;
+            count++;
+
+            System.out.println("Book added successfully!");
+        }
+
+
+        // Search book status
+        System.out.print("\nEnter book name to check status: ");
+        String search = sc.nextLine();
+
+        for (int i = 0; i < count; i++) {
+
+            if (bookName[i].equalsIgnoreCase(search)) {
+
+                System.out.println("Book Name: " + bookName[i]);
+                System.out.println("Author: " + author[i]);
+
+                if (issued[i])
+                    System.out.println("Status: Issued");
+                else
+                    System.out.println("Status: Available");
+            }
+        }
+
+
+        // Issue book
+        System.out.print("\nEnter book name to issue: ");
+        String issueBook = sc.nextLine();
+
+        for (int i = 0; i < count; i++) {
+
+            if (bookName[i].equalsIgnoreCase(issueBook)) {
+
+                issued[i] = true;
+                System.out.println("Book issued successfully!");
+            }
+        }
+
+
+        // Return book
+        System.out.print("\nEnter book name to return: ");
+        String returnBook = sc.nextLine();
+
+        for (int i = 0; i < count; i++) {
+
+            if (bookName[i].equalsIgnoreCase(returnBook)) {
+
+                issued[i] = false;
+                System.out.println("Book returned successfully!");
+            }
+        }
+
+        sc.close();
+    }
+}
